@@ -11,8 +11,10 @@ public class User
     public string Email { get; set; } = string.Empty;
 
     public UserRole Role { get; set; } = UserRole.RegularUser;
+    
+    public string PasswordHash { get; set; } = string.Empty;
 
-    public DateTime CreatedAtUtc { get; set; }
+    public DateTimeOffset CreatedAtUtc { get; set; }
 
     public ICollection<Booking> Bookings { get; set; } = new List<Booking>();
 }

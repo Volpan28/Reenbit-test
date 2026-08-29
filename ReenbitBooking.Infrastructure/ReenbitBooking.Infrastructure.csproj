@@ -6,4 +6,13 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="BCrypt.Net-Next" Version="4.2.0" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.30" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\ReenbitBooking.Application\ReenbitBooking.Application.csproj" />
+    </ItemGroup>
+
 </Project>

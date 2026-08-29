@@ -6,4 +6,8 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\ReenbitBooking.Domain\ReenbitBooking.Domain.csproj" />
+    </ItemGroup>
+
 </Project>
