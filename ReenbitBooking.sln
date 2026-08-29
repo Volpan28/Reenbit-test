@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReenbitBooking.Api", "ReenbitBooking.Api\ReenbitBooking.Api.csproj", "{583DB5E8-3EE2-4199-B617-A466C8E36927}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReenbitBooking.Domain", "ReenbitBooking.Domain\ReenbitBooking.Domain.csproj", "{F6977229-A5C7-492D-9D7C-1A9C17A41CBB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReenbitBooking.Application", "ReenbitBooking.Application\ReenbitBooking.Application.csproj", "{8556420C-0EF6-4DF2-BE71-C8EECD6CA2FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReenbitBooking.Infrastructure", "ReenbitBooking.Infrastructure\ReenbitBooking.Infrastructure.csproj", "{EDCC8882-E536-438B-9E73-7CE3E0D0744E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{583DB5E8-3EE2-4199-B617-A466C8E36927}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{583DB5E8-3EE2-4199-B617-A466C8E36927}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{583DB5E8-3EE2-4199-B617-A466C8E36927}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{583DB5E8-3EE2-4199-B617-A466C8E36927}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6977229-A5C7-492D-9D7C-1A9C17A41CBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6977229-A5C7-492D-9D7C-1A9C17A41CBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6977229-A5C7-492D-9D7C-1A9C17A41CBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6977229-A5C7-492D-9D7C-1A9C17A41CBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8556420C-0EF6-4DF2-BE71-C8EECD6CA2FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8556420C-0EF6-4DF2-BE71-C8EECD6CA2FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8556420C-0EF6-4DF2-BE71-C8EECD6CA2FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8556420C-0EF6-4DF2-BE71-C8EECD6CA2FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDCC8882-E536-438B-9E73-7CE3E0D0744E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDCC8882-E536-438B-9E73-7CE3E0D0744E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDCC8882-E536-438B-9E73-7CE3E0D0744E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDCC8882-E536-438B-9E73-7CE3E0D0744E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

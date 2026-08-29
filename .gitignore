@@ -1,0 +1,59 @@
+## --- Build Artifacts & Binaries ---
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Bb]in/
+[Oo]bj/
+[An]tlan/
+artifactory/
+_ReSharper*/
+
+## --- Core .NET & ASP.NET Tooling ---
+.vs/
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.vshistory
+
+## --- Secrets & Environment Configurations ---
+appsettings.Development.json
+appsettings.Local.json
+*.secrets.json
+*.pem
+*.pfx
+.env
+.env.*
+
+## --- Package & Dependency Management ---
+*.nuget.props
+*.nuget.targets
+project.lock.json
+project.fragment.lock.json
+packages/
+
+## --- Database & Entity Framework Core ---
+*.mdf
+*.ldf
+*.db
+*.sqlite
+*.sqlite3
+*.db-shm
+*.db-wal
+/Migrations/
+
+## --- Logging & Diagnostic Output ---
+*.log
+*.binlog
+TestResults/
+BenchmarkDotNet.Artifacts/
+
+## --- OS & Miscellaneous Files ---
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
