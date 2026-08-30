@@ -1,9 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ReenbitBooking.Application.Common.Interfaces;
 using ReenbitBooking.Domain.Entities;
 
 namespace ReenbitBooking.Infrastructure.Context;
 
-public class ApplicationDbContext : DbContext
+public class ApplicationDbContext : DbContext, IApplicationDbContext
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
     {
@@ -11,9 +12,9 @@ public class ApplicationDbContext : DbContext
     }
     
     public DbSet<Booking> Bookings => Set<Booking>();
-    public DbSet<Room> Room => Set<Room>();
-    public DbSet<Slot> Slot => Set<Slot>();
-    public DbSet<User> User => Set<User>();
+    public DbSet<Room> Rooms => Set<Room>();
+    public DbSet<Slot> Slots => Set<Slot>();
+    public DbSet<User> Users => Set<User>();
     
     public Task<int> SaveChangesAsync(CancellationToken cancellationToken = default) => base.SaveChangesAsync();
 
