@@ -67,6 +67,15 @@ public sealed class GlobalExceptionHandler(ILogger<GlobalExceptionHandler> logge
                     "The resource was modified by another request. Please reload the data and try again.",
                     null);
 
+            case UnauthorizedException unauthorizedException:
+                logger.LogWarning(unauthorizedException, "Authentication failed.");
+
+                return (
+                    StatusCodes.Status401Unauthorized,
+                    "Unauthorized",
+                    unauthorizedException.Message,
+                    null);
+
             case NotFoundException notFoundException:
                 logger.LogWarning(notFoundException, "Requested entity was not found.");
 

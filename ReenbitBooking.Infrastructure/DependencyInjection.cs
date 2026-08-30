@@ -2,7 +2,9 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ReenbitBooking.Application.Common.Interfaces;
+using ReenbitBooking.Application.Common.Settings;
 using ReenbitBooking.Infrastructure.Context;
+using ReenbitBooking.Infrastructure.Security;
 
 namespace ReenbitBooking.Infrastructure;
 
@@ -12,9 +14,13 @@ public static class DependencyInjection
     {
         services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
-        
+
         services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
-        
+
+        services.Configure<JwtSettings>(configuration.GetSection(JwtSettings.SectionName));
+        services.AddScoped<IJwtProvider, JwtProvider>();
+        services.AddScoped<IPasswordHasher, PasswordHasher>();
+
         return services;
     }
 }
