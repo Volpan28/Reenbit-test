@@ -13,12 +13,7 @@ public class CreateBookingCommandHandler(IApplicationDbContext _context) : IRequ
     {
         var slot = await _context.Slots.FirstOrDefaultAsync(s => s.Id == request.SlotId, cancellationToken)
                    ?? throw new NotFoundException(nameof(Slot), request.SlotId);
-
-        if (slot.Status != SlotStatus.Available)
-        {
-            throw new BadRequestException("Slot is already booked or blocked.");
-        }
-
+        
         slot.Status = SlotStatus.Booked;
         
         var booking = new Booking
