@@ -1,0 +1,6 @@
+@ReenbitBooking.Api_HostAddress = http://localhost:5169
+
+GET {{ReenbitBooking.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
