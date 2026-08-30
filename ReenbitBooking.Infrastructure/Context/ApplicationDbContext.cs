@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Reflection;
+using Microsoft.EntityFrameworkCore;
 using ReenbitBooking.Application.Common.Interfaces;
 using ReenbitBooking.Domain.Entities;
 
@@ -6,22 +7,16 @@ namespace ReenbitBooking.Infrastructure.Context;
 
 public class ApplicationDbContext : DbContext, IApplicationDbContext
 {
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
-    {
-        
-    }
-    
-    public DbSet<Booking> Bookings => Set<Booking>();
-    public DbSet<Room> Rooms => Set<Room>();
-    public DbSet<Slot> Slots => Set<Slot>();
-    public DbSet<User> Users => Set<User>();
-    
-    public Task<int> SaveChangesAsync(CancellationToken cancellationToken = default) => base.SaveChangesAsync();
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
-    protected void onmodelCreating(ModelBuilder builder)
+    public DbSet<Room> Rooms { get; set; }
+    public DbSet<Slot> Slots { get; set; }
+    public DbSet<User> Users { get; set; }
+    public DbSet<Booking> Bookings { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        builder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
-        base.OnModelCreating(builder);
+        base.OnModelCreating(modelBuilder);
+        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
-    
 }
