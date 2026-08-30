@@ -2,7 +2,7 @@
 using ReenbitBooking.Application.Common.Interfaces;
 using ReenbitBooking.Domain.Entities;
 
-namespace ReenbitBooking.Application.Features.Rooms.Commands;
+namespace ReenbitBooking.Application.Features.Rooms.Commands.CreateRoom;
 
 public class CreateRoomCommandHandler(IApplicationDbContext _context) : IRequestHandler<CreateRoomCommand, Guid>
 {

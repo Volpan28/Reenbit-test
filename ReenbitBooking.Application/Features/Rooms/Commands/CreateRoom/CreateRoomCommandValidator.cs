@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace ReenbitBooking.Application.Features.Rooms.Commands;
+namespace ReenbitBooking.Application.Features.Rooms.Commands.CreateRoom;
 
 public class CreateRoomCommandValidator : AbstractValidator<CreateRoomCommand>
 {
