@@ -1,3 +1,4 @@
+using System.Text.Json;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,9 +11,7 @@ namespace ReenbitBooking.Api.ExceptionHandling;
 /// Central place for translating unhandled exceptions into ProblemDetails responses,
 /// so MediatR handlers stay free of try-catch blocks.
 /// </summary>
-public sealed class GlobalExceptionHandler(
-    IProblemDetailsService problemDetailsService,
-    ILogger<GlobalExceptionHandler> logger) : IExceptionHandler
+public sealed class GlobalExceptionHandler(ILogger<GlobalExceptionHandler> logger) : IExceptionHandler
 {
     public async ValueTask<bool> TryHandleAsync(
         HttpContext httpContext,
@@ -39,12 +38,14 @@ public sealed class GlobalExceptionHandler(
             }
         }
 
-        return await problemDetailsService.TryWriteAsync(new ProblemDetailsContext
-        {
-            HttpContext = httpContext,
-            Exception = exception,
-            ProblemDetails = problemDetails
-        });
+        // ProblemDetailsService/WriteAsJsonAsync go through a PipeWriter path that TestHost's
+        // ResponseBodyPipeWriter doesn't fully implement (missing UnflushedBytes), which throws
+        // an InvalidOperationException in integration tests. Serialize and write manually instead.
+        httpContext.Response.ContentType = "application/problem+json";
+        var payload = JsonSerializer.Serialize(problemDetails);
+        await httpContext.Response.WriteAsync(payload, cancellationToken);
+
+        return true;
     }
 
     private (int StatusCode, string Title, string Detail, IDictionary<string, object?>? Extensions) MapException(
