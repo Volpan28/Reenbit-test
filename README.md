@@ -65,5 +65,6 @@ To run the tests (requires Docker for Testcontainers):
 ## AI Collaboration
 This project was developed with the active assistance of Claude Code and Gemini, adhering to the development process requirements. A CLAUDE.md configuration file is included in the repository.
 
-## Admin Login
-**Admin - reenbittest@gmail.com | Password123! **
+## Login
+Admin - reenbittest@gmail.com | Password123!
+Regular User - mykola@gmail.com | Password123!
