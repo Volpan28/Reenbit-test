@@ -38,7 +38,9 @@ builder.Services.AddAuthorization();
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddProblemDetails();
 builder.Services.AddControllers();
-builder.Services.AddSignalR();
+var signalR = builder.Services.AddSignalR();
+var signalRConn = builder.Configuration.GetConnectionString("AzureSignalR");
+if (!string.IsNullOrEmpty(signalRConn)) signalR.AddAzureSignalR(signalRConn);
 builder.Services.AddTransient<IScheduleNotifier, ReenbitBooking.Api.Services.ScheduleNotifier>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
@@ -90,10 +92,13 @@ if (app.Environment.IsDevelopment())
 
 app.UseExceptionHandler();
 app.UseHttpsRedirection();
+app.UseDefaultFiles();
+app.UseStaticFiles();
 app.UseCors("CorsPolicy");
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+app.MapFallbackToFile("index.html");
 app.MapHub<ReenbitBooking.Api.Hubs.ScheduleHub>("/hubs/schedule");
 
 app.Run();
