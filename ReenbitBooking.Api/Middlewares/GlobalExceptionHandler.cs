@@ -37,6 +37,12 @@ public sealed class GlobalExceptionHandler(ILogger<GlobalExceptionHandler> logge
                 problemDetails.Extensions[key] = value;
             }
         }
+        else if (exception is ConflictException conflictEx)
+        {
+            httpContext.Response.StatusCode = StatusCodes.Status409Conflict;
+            await httpContext.Response.WriteAsJsonAsync(new { Error = conflictEx.Message }, cancellationToken);
+            return true;
+        }
 
         // ProblemDetailsService/WriteAsJsonAsync go through a PipeWriter path that TestHost's
         // ResponseBodyPipeWriter doesn't fully implement (missing UnflushedBytes), which throws

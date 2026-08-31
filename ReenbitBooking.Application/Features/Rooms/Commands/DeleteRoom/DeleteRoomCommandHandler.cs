@@ -11,7 +11,8 @@ public class DeleteRoomCommandHandler(IApplicationDbContext _context) : IRequest
         var room = await _context.Rooms.FindAsync(new object[] { request.Id }, cancellationToken)
                    ?? throw new NotFoundException($"Room with ID {request.Id} not found.");
 
-        _context.Rooms.Remove(room);
+        room.IsActive = false; 
+
         await _context.SaveChangesAsync(cancellationToken);
         return Unit.Value;
     }
