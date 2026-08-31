@@ -21,6 +21,7 @@ public class RegisterUserCommandHandler(
         var user = new User
         {
             Id = Guid.NewGuid(),
+            FullName = request.FullName,
             Email = request.Email,
             PasswordHash = _passwordHasher.Hash(request.Password),
             Role = isFirstUser ? UserRole.Admin : UserRole.RegularUser
