@@ -5,7 +5,8 @@ using ReenbitBooking.Domain.Enums;
 
 namespace ReenbitBooking.Application.Features.Slots.Commands.DeleteSlot;
 
-public class DeleteSlotCommandHandler(IApplicationDbContext _context) : IRequestHandler<DeleteSlotCommand, Unit>
+public class DeleteSlotCommandHandler(IApplicationDbContext _context, 
+    IScheduleNotifier _scheduleNotifier) : IRequestHandler<DeleteSlotCommand, Unit>
 {
     public async Task<Unit> Handle(DeleteSlotCommand request, CancellationToken cancellationToken)
     {
@@ -17,6 +18,8 @@ public class DeleteSlotCommandHandler(IApplicationDbContext _context) : IRequest
 
         _context.Slots.Remove(slot);
         await _context.SaveChangesAsync(cancellationToken);
+        
+        await _scheduleNotifier.NotifySlotDeletedAsync(slot.RoomId, slot.Id, cancellationToken);
         return Unit.Value;
     }
 }

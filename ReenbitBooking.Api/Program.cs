@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using ReenbitBooking.Api.ExceptionHandling;
 using ReenbitBooking.Application;
+using ReenbitBooking.Application.Common.Interfaces;
 using ReenbitBooking.Application.Common.Settings;
 using ReenbitBooking.Infrastructure;
 
@@ -37,6 +38,8 @@ builder.Services.AddAuthorization();
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddProblemDetails();
 builder.Services.AddControllers();
+builder.Services.AddSignalR();
+builder.Services.AddTransient<IScheduleNotifier, ReenbitBooking.Api.Services.ScheduleNotifier>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
@@ -91,6 +94,7 @@ app.UseCors("CorsPolicy");
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+app.MapHub<ReenbitBooking.Api.Hubs.ScheduleHub>("/hubs/schedule");
 
 app.Run();
 
